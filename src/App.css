@@ -1,0 +1,385 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, #bd5319 0%, #d36a28 35%, #e68a35 70%, #c47228 100%);
+  font-family: 'Georgia', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.western-scene {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* --- Decorações do Lado de Fora --- */
+.outside-decorations {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Moinho girando no topo */
+.outer-windmill {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.9;
+}
+
+.windmill-tower {
+  width: 18px;
+  height: 110px;
+  background: #4a2e1b;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  box-shadow: inset 3px 0px rgba(0,0,0,0.5);
+}
+
+.windmill-blades {
+  position: absolute;
+  top: 15px;
+  width: 80px;
+  height: 80px;
+  background: 
+    linear-gradient(45deg, transparent 42%, #2b170e 42%, #2b170e 58%, transparent 58%),
+    linear-gradient(-45deg, transparent 42%, #2b170e 42%, #2b170e 58%, transparent 58%);
+  border-radius: 50%;
+  animation: spin 7s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Cactos nas laterais */
+.outer-cactus {
+  position: absolute;
+  font-size: 5.5rem;
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.4));
+  bottom: 80px;
+}
+
+.cactus-left {
+  left: 14%;
+  transform: scaleX(-1);
+}
+
+.cactus-right {
+  right: 14%;
+}
+
+/* --- Cercas de Madeira Estilo Velho Oeste --- */
+.wooden-fence {
+  position: absolute;
+  background: transparent;
+}
+
+/* Cerca Lateral Esquerda (Vertical com tábuas cruzadas) */
+.fence-left {
+  left: 35px;
+  bottom: 60px;
+  width: 50px;
+  height: 240px;
+}
+
+/* Cerca Lateral Direita */
+.fence-right {
+  right: 35px;
+  bottom: 60px;
+  width: 50px;
+  height: 240px;
+}
+
+/* Tábuas Horizontais das cercas laterais */
+.rail {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  background: #5c3a21;
+  border: 1px solid #231309;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.rail-top { top: 40px; }
+.rail-bottom { top: 150px; }
+
+/* Estacas Verticais das cercas laterais */
+.post {
+  position: absolute;
+  left: 18px;
+  width: 14px;
+  height: 230px;
+  background: #4a2e1b;
+  border: 1px solid #231309;
+  border-radius: 2px 2px 0 0;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.3);
+}
+
+/* Cerca Inferior */
+.fence-bottom {
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 440px;
+  height: 35px;
+}
+
+.rail-h {
+  position: absolute;
+  width: 100%;
+  height: 8px;
+  background: #5c3a21;
+  border: 1px solid #231309;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.rail-h-top { top: 5px; }
+.rail-h-bottom { top: 20px; }
+
+.post-v {
+  position: absolute;
+  top: -5px;
+  width: 12px;
+  height: 45px;
+  background: #4a2e1b;
+  border: 1px solid #231309;
+  border-radius: 2px 2px 0 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* --- Caixa Principal do Jogo --- */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #2c1611;
+  background-image: radial-gradient(circle, rgba(61, 31, 18, 0.95) 0%, rgba(20, 9, 4, 0.98) 100%);
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 0 15px rgba(212, 110, 43, 0.3);
+  border: 6px solid #4a2511;
+  position: relative;
+  z-index: 10;
+}
+
+.header {
+  margin-bottom: 8px;
+}
+
+.game-container h1 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #f4d06f;
+  text-shadow: 2px 2px #000;
+  text-align: center;
+}
+
+.score-board {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 5px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: #d9b382;
+}
+
+.score-item span {
+  color: #fff;
+}
+
+/* Tabuleiro (Areia do Deserto) */
+.board {
+  width: 380px;
+  height: 380px;
+  background: 
+    linear-gradient(135deg, rgba(217, 130, 43, 0.2) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(217, 130, 43, 0.2) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(217, 130, 43, 0.2) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(217, 130, 43, 0.2) 25%, #c88432 25%);
+  background-size: 20px 20px;
+  background-color: #b36b22;
+  border: 6px solid #3b1d0e;
+  border-radius: 6px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.8);
+  overflow: visible !important;
+}
+
+/* Corpo da Cobra */
+.snake-segment {
+  background: #6b8e23;
+  border: 1px solid #3b5315;
+  border-radius: 3px;
+  position: relative;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
+}
+
+/* Cabeça da Cobra */
+.snake-head {
+  background: #557a2b;
+  border: 1px solid #2d4215;
+  border-radius: 4px;
+  position: relative;
+  overflow: visible !important;
+  z-index: 50;
+  box-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
+
+/* Chapéu de Cowboy Marrom */
+.cowboy-hat {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 8px;
+  background-color: #4a2511;
+  border-radius: 50% 50% 2px 2px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.6);
+  z-index: 999;
+}
+
+.cowboy-hat::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: -4px;
+  width: 28px;
+  height: 4px;
+  background-color: #381d0e;
+  border-radius: 50%;
+}
+
+/* Linguinha Bifurcada */
+.snake-tongue {
+  position: absolute;
+  background-color: #ff3333;
+  border-radius: 1px;
+  z-index: 40;
+}
+
+.snake-tongue.up {
+  width: 3px;
+  height: 7px;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.snake-tongue.down {
+  width: 3px;
+  height: 7px;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.snake-tongue.left {
+  width: 7px;
+  height: 3px;
+  top: 50%;
+  left: -7px;
+  transform: translateY(-50%);
+}
+
+.snake-tongue.right {
+  width: 7px;
+  height: 3px;
+  top: 50%;
+  right: -7px;
+  transform: translateY(-50%);
+}
+
+/* Frutinha Estilizada */
+.food {
+  background: radial-gradient(circle at 30% 30%, #ff5252, #b71c1c);
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff4d3b;
+  z-index: 5;
+}
+
+/* Caixa de Game Over */
+.game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.game-over-box {
+  background-color: #d7ccc8;
+  background-image: linear-gradient(135deg, #e6dcd3 0%, #c4b5ab 100%);
+  padding: 20px 28px;
+  border-radius: 6px;
+  border: 4px solid #4a2511;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+  text-align: center;
+}
+
+.game-over-box h2 {
+  color: #b71c1c;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  font-family: 'Impact', sans-serif;
+}
+
+.restart-btn {
+  background-color: #592d1c;
+  color: #f4d06f;
+  border: 2px solid #2c1611;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Georgia', serif;
+}
+
+.restart-btn:hover {
+  background-color: #733a24;
+  color: #fff;
+}

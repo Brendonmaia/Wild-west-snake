@@ -1,0 +1,31 @@
+:root {
+  font-family: 'Georgia', serif;
+  color-scheme: light dark;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Fundo do deserto e céu do Velho Oeste ocupando toda a tela */
+  background: linear-gradient(to bottom, #2b1712 0%, #733a24 40%, #c87a32 75%, #a6561e 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
